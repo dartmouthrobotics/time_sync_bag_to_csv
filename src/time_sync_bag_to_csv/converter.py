@@ -172,7 +172,7 @@ class Converter:
 
 
     def combined_callback(self, sonde_msg, sonar_msg, gps_msg, vfr_hud_msg, gps_velocity_msg, imu_msg):
-    # def combined_callback(self, sonde_msg, gps_msg, vfr_hud_msg, gps_velocity_msg, imu_msg):
+        # reference: https://github.com/dartmouthrobotics/gds_tools.git
 
         # The callback processing the pairs of numbers that arrived at approximately the same time
         data_array = [
