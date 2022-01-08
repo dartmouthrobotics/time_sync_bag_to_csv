@@ -2,12 +2,14 @@
 
 This package converts .bag collected by asv (but any type of robot) into .csv.
 The robot is assumed to record .bag file including gps, imu, compass, depth sonar, ysi sonde, ardupilot (mavros). 
-* reference: http://wiki.ros.org/message_filters/ApproximateTime
+* reference: 
+    * http://wiki.ros.org/message_filters/ApproximateTime
+    * https://github.com/dartmouthrobotics/gds_tools.git
 
 ## License
 This project is licensed under the MIT License.
 
-Authors: Mingi Jeong, Monika Roznere (contribution to gds tool)
+Authors: Mingi Jeong, Monika Roznere
 
 ## Prerequisites
 You need to have ROS (equal to or above kinetic), Ubuntu (equal to or above 16.04).
@@ -70,7 +72,7 @@ This param.yaml file sets up
     ```
     roslaunch time_sync_bag_to_csv converter.launch
     ```
-    * Once it runs corretly, you will see the printed msg that it is conversting.
+    * Once it runs correctly, you will see the printed msg that it is conversting.
     * If the conversion is finished, press `ctrl+c` and go to the output folder
 
 ### TODO
