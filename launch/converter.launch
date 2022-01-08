@@ -1,0 +1,9 @@
+<launch>
+  <!-- <arg name="csv_file_name" default="test2.csv" /> -->
+
+  <node pkg="time_sync_bag_to_csv" type="csv_converter" name="csv_converter" output="screen">
+    <!-- <param name="csv_file_name" value="$(arg csv_file_name)"/> -->
+    <rosparam file="$(find time_sync_bag_to_csv)/param/param.yaml" command="load"/>
+  </node>
+
+</launch>

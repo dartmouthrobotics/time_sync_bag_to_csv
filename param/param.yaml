@@ -1,0 +1,27 @@
+output_file_name: Sunapee-2021-01-01.csv
+
+# output data
+# set false if you want disable (default: put all true)
+# converter.py callback argument should be changed in case this is chanced
+
+sonde: true
+sonde_topic: 'sonde'
+
+compass: true
+compass_topic: 'mavros/global_position/compass_hdg'
+
+gps: true
+gps_topic: 'mavros/global_position/global'
+
+gps_vel: true
+gps_vel_topic: 'mavros/global_position/raw/gps_vel'
+
+imu: true
+imu_topic: 'mavros/local_position/odom'
+
+vfr_hud: true
+vfr_hud_topic: 'mavros/vfr_hud'
+
+sonar: true
+# sonar_topic: 'depth_transducer/depth' # catabot 2, 3
+sonar_topic: 'sonar' # catabot 1

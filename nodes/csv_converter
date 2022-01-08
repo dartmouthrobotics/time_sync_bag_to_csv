@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+"""
+    Author: Mingi Jeong
+
+    node csv_converter
+    
+    purpose: 
+    - main converter node
+"""
+
+# python modules
+import csv
+# from ruamel import yaml
+
+# ROS modules
+import rospy
+
+# custom modules
+from time_sync_bag_to_csv.converter import Converter
+
+
+def main():
+    # node initialization
+    rospy.init_node('time_sync_bag_to_csv')
+    rospy.sleep(1)
+
+    # class instantiation for time sync subscriber
+    converter = Converter()
+    converter.initializer()
+    converter.time_sync_callback()
+
+if __name__ == '__main__':
+    try:
+        main()
+    except rospy.ROSInterruptException:
+        rospy.logerr("executing csv converter node failed")
+        pass
