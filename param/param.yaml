@@ -22,6 +22,6 @@ imu_topic: 'mavros/local_position/odom'
 vfr_hud: true
 vfr_hud_topic: 'mavros/vfr_hud'
 
-sonar: true
+sonar: true # Catabot 2 / Cataboat box set as 'false'
 # sonar_topic: 'depth_transducer/depth' # catabot 2, 3
 sonar_topic: 'sonar' # catabot 1

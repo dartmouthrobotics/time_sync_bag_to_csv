@@ -30,7 +30,7 @@ timed_compass_msg = Range()
 
 class Converter:
     def __init__(self):
-        """constructure"""
+        """constructor"""
         self._sonde_sub = None
         self._gps_sub = None
         self._gps_vel_sub = None    
@@ -40,6 +40,8 @@ class Converter:
         self._compass_sub = None
         self._sub_flag_dict = dict()
         self._output_dir = None
+        self.initializer()
+
 
     def initializer(self):
         sonde_use = rospy.get_param('~sonde')

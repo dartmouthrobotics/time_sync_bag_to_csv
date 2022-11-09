@@ -43,6 +43,8 @@ include_directories(
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 catkin_install_python(PROGRAMS
+  nodes/csv_converter
+  nodes/csv_converter_multi
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
