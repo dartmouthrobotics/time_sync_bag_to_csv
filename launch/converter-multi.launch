@@ -1,0 +1,12 @@
+<launch>
+  <arg name="bag_file" default="/home/minkbrook/Desktop/scenario_10_1_MOA_t4_f3.0_g4.0_h1.0_T15_D15_A10_2022-01-26-09-08-48.bag" />
+
+  <!-- bag player -->
+  <node pkg="rosbag" type="play" name="ros_bag_player" args="--bags=$(arg bag_file) --rate=10" />
+
+  <!-- converter -->
+  <node pkg="time_sync_bag_to_csv" type="csv_converter_multiobs" name="csv_converter_multiobs" output="screen">
+    <param name="bag_file" value="$(arg bag_file)"/>
+  </node>
+
+</launch>
