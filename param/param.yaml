@@ -1,4 +1,4 @@
-output_file_name: Sunapee-2021-01-01.csv
+output_file_name: Sunapee-test.csv
 
 # output data
 # set false if you want disable (default: put all true)
@@ -22,6 +22,6 @@ imu_topic: 'mavros/local_position/odom'
 vfr_hud: true
 vfr_hud_topic: 'mavros/vfr_hud'
 
-sonar: true # Catabot 2 / Cataboat box set as 'false'
-# sonar_topic: 'depth_transducer/depth' # catabot 2, 3
-sonar_topic: 'sonar' # catabot 1
+sonar: false # Catabot 2 / Cataboat box set as 'false'
+sonar_topic: 'depth_transducer/depth' # catabot 2, 3
+# sonar_topic: 'sonar' # catabot 1
