@@ -1,0 +1,9 @@
+<launch>
+    <arg name="bag_file_run" default="$(arg bag_file_run)"/>
+    <arg name="bag_file" default="$(arg bag_file)" />
+    <arg name="start_delay" default="$(arg start_delay)" />
+
+    <group if="$(eval bag_file_run)">
+        <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /root/bagfile/$(arg bag_file_name)"/>
+    </group>
+</launch>

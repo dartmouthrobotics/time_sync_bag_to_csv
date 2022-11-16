@@ -29,7 +29,10 @@ def main():
     converter = Converter()
     # converter.initializer()
     converter.time_sync_callback()
-
+    while not rospy.is_shutdown():
+        rospy.logwarn("starting the converter......")
+        rospy.spin()
+        
 
 if __name__ == '__main__':
     try:

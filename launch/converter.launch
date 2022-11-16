@@ -1,6 +1,15 @@
 <launch>
+  <arg name="bag_file_run" default="false"/>
+  <arg name="bag_file" default="" />
+  <arg name="node_start_delay" default="5.0" />
+
+  <!-- bag player -->
+  <group if="$(arg bag_file_run)">
+    <node pkg="rosbag" type="play" name="ros_bag_player" args="--clock --bags=$(arg bag_file) --rate=1" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' " />
+  </group>
+
+  <!-- time sync converter -->
   <node pkg="time_sync_bag_to_csv" type="csv_converter" name="csv_converter" output="screen">
-    <!-- <param name="csv_file_name" value="$(arg csv_file_name)"/> -->
     <rosparam file="$(find time_sync_bag_to_csv)/param/param.yaml" command="load"/>
   </node>
 
