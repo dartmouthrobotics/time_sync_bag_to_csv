@@ -1,0 +1,6 @@
+<launch>
+  <!-- auto converter -->
+  <node pkg="time_sync_bag_to_csv" type="convert_harness" name="convert_harness" output="screen" >
+    <rosparam file="$(find time_sync_bag_to_csv)/param/param.yaml" command="load"/>
+  </node>
+</launch>

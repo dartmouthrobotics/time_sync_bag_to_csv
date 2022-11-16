@@ -102,7 +102,7 @@ class Converter:
             self._compass_sub = rospy.Subscriber(rospy.get_param('~compass_topic'), Float64, self._compass_callback)
             self._sub_flag_dict['compass'] = compass_use
         except:
-            rospy.logerr("sonar subscriber initialization failed")
+            rospy.logerr("compass subscriber initialization failed")
 
         # rospy.loginfo("gps_vel_topic {} and type {}".format(gps_vel_topic, type(gps_vel_topic)))
 
@@ -111,13 +111,26 @@ class Converter:
 
 
     def update_save_path(self):
-        # saving path (param.yaml --> save file name)
-        rospack = rospkg.RosPack()
-        self._output_dir = rospack.get_path('time_sync_bag_to_csv') + "/data/" + rospy.get_param('~output_file_name')
-        self._output_param_dir = self._output_dir.replace(".csv", "_parameter.txt")
-            
-        # self._bag_file_name = str(rospy.get_param('~bag_file'))
-        # self._output_dir = self._bag_file_name.replace(".bag", ".csv")
+        """
+        saving path (param.yaml --> save file name)
+
+        if rosbag_run True: directly that file name as output
+        else: user-intended output file name
+        """
+
+        rosbag_run = rospy.get_param('~bag_file_run')
+
+        if rosbag_run:
+            self._bag_file_name = str(rospy.get_param('~bag_file'))
+            self._output_dir = self._bag_file_name.replace(".bag", ".csv")
+            self._output_param_dir = self._output_dir.replace(".csv", "_parameter.txt")
+
+        else:
+            rospack = rospkg.RosPack()
+            self._output_dir = rospack.get_path('time_sync_bag_to_csv') + "/data/" + rospy.get_param('~output_file_name')
+            self._output_param_dir = self._output_dir.replace(".csv", "_parameter.txt")
+        
+        rospy.logwarn("Converted data will be saved into ==========> {}".format(self._output_dir))
 
 
     def _compass_callback(self, msg):
@@ -171,14 +184,11 @@ class Converter:
         else:
             ts.registerCallback(self.combined_callback_no_sonar)
 
-        while not rospy.is_shutdown():
-            rospy.spin()
 
     # TODO 2022.11.10 change order more dynamically // message and subscriber without (no sonar separate function)
 
     def combined_callback(self, sonde_msg, sonar_msg, gps_msg, vfr_hud_msg, gps_velocity_msg, imu_msg):
         # reference: https://github.com/dartmouthrobotics/gds_tools.git
-
         # The callback processing the pairs of numbers that arrived at approximately the same time
         data_array = [
                 gps_msg.header.stamp.to_sec(), gps_msg.latitude, gps_msg.longitude,

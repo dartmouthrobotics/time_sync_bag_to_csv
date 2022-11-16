@@ -1,4 +1,7 @@
-output_file_name: Sunapee-test.csv
+bag_file: catabot2_2022-10-04-13-31-03.bagchunk_0000.bag
+bag_file_run: true
+
+# output_file_name: Sunapee-test.csv # when you don't run a bagfile directly from launch
 
 # output data
 # set false if you want disable (default: put all true)
