@@ -1,8 +1,8 @@
 build/
 bin/
 lib/
-data/*.csv
-data/*.txt
+/data/*.csv
+/data/*.txt
 msg_gen/
 srv_gen/
 msg/*Action.msg
