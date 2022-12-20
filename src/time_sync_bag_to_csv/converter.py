@@ -118,15 +118,15 @@ class Converter:
         else: user-intended output file name
         """
 
-        rosbag_run = rospy.get_param('~bag_file_run')
+        rosbag_run = rospy.get_param('~bag_file_run') 
+        rospack = rospkg.RosPack()
 
-        if rosbag_run:
+        if rosbag_run: # bag running via docker
             self._bag_file_name = str(rospy.get_param('~bag_file'))
-            self._output_dir = self._bag_file_name.replace(".bag", ".csv")
+            self._output_dir = rospack.get_path('time_sync_bag_to_csv') + "/data/" + self._bag_file_name.replace(".bag", ".csv")
             self._output_param_dir = self._output_dir.replace(".csv", "_parameter.txt")
 
-        else:
-            rospack = rospkg.RosPack()
+        else: # bag running manually, separately
             self._output_dir = rospack.get_path('time_sync_bag_to_csv') + "/data/" + rospy.get_param('~output_file_name')
             self._output_param_dir = self._output_dir.replace(".csv", "_parameter.txt")
         
